@@ -1,0 +1,42 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:core="http://typo3.org/ns/TYPO3/CMS/Core/ViewHelpers"
+    xmlns:ac="http://typo3.org/ns/Xima/XimaApiClient/ViewHelpers"
+    data-namespace-typo3-fluid="true">
+
+<div class="col-sm-6 mb-3 request-input-array">
+    <label for="{id}" class="form-label"><span class="font-monospace">{parameter.name}</span>
+        <f:if condition="{parameter.required}">
+            <code>*</code>
+        </f:if>
+    </label>
+    <f:variable name="parameterName" value="{ac:arrayValueUtil(value:parameter.name)}"/>
+
+    <f:if condition="{values.{parameterName}}">
+        <f:then>
+            <f:for as="value" each="{values.{parameterName}}">
+                <f:render section="input" arguments="{_all}"/>
+            </f:for>
+        </f:then>
+        <f:else>
+            <f:render section="input" arguments="{_all}"/>
+        </f:else>
+    </f:if>
+    <f:if condition="{parameter.description}">
+        <div id="{id}-help" class="text-muted form-text">{parameter.description}</div>
+    </f:if>
+</div>
+
+<f:section name="input">
+    <div class="input-group mb-3">
+        <input type="hidden" name="request#_{id}#parameter[]" value="{parameter.name}"/>
+        <input type="input" class="form-control" id="{id}" value="{value -> f:spaceless()}" name="request#_{id}#value[]" aria-describedby="{id}-help"
+               {f:if(condition: '{parameter.required}', then: 'required')}/>
+        <button href="#" onclick="Request.addArrayInput" class="add btn btn-outline-secondary">
+            <core:icon identifier="actions-variable-add" size="small"/>
+        </button>
+        <button href="#" onclick="Request.removeArrayInput" class="remove btn btn-outline-secondary">
+            <core:icon identifier="actions-variable-remove" size="small"/>
+        </button>
+    </div>
+</f:section>

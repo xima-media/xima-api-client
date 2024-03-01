@@ -1,0 +1,33 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:core="http://typo3.org/ns/TYPO3/CMS/Core/ViewHelpers"
+    xmlns:ac="http://typo3.org/ns/Xima/XimaApiClient/ViewHelpers"
+    data-namespace-typo3-fluid="true">
+
+
+<f:variable name="parameterName" value="{ac:arrayValueUtil(value: parameter.name)}"/>
+<f:if condition="{ac:isArray(value: '{values.{parameterName}}')}">
+    <f:if condition="{ac:getAssociativeArrayKey(value: '{parameter.name}', values: '{values}')}">
+        <f:then>
+            <f:variable name="value" value="{ac:getAssociativeArrayKey(value: '{parameter.name}', values: '{values}')}"/>
+        </f:then>
+        <f:else>
+            <f:variable name="value" value=""/>
+        </f:else>
+    </f:if>
+</f:if>
+
+<div class="col-sm-6 mb-3 request-input-string">
+        <label for="{id}" class="form-label"><span class="font-monospace">{parameter.name}</span>
+            <f:if condition="{parameter.required}">
+                <code>*</code>
+            </f:if>
+        </label>
+        <input type="hidden" name="request#_{id}#parameter" value="{parameter.name}">
+        <input type="input" class="form-control" id="{id}" name="request#_{id}#value" value="{value -> f:spaceless()}" aria-describedby="{id}-help"
+               {f:if(condition: '{parameter.required}', then: 'required')}
+        >
+    <f:if condition="{parameter.description}">
+        <div id="{id}-help" class="text-muted form-text">{parameter.description}</div>
+    </f:if>
+</div>

@@ -1,0 +1,1 @@
+import e from"nprogress";class o{constructor(){window.addEventListener("beforeunload",function(n){e.configure({parent:".module-loading-indicator",showSpinner:!0}),e.start()}),window.addEventListener("unload",function(n){e.done()})}}export default new o;

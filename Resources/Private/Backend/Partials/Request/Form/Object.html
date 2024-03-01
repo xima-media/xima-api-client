@@ -1,0 +1,13 @@
+<div class="col-sm-6 mb-3 request-input-object">
+    <label for="{id}" class="form-label"><span class="font-monospace">{parameter.name}</span>
+        <f:if condition="{parameter.required}">
+            <code>*</code>
+        </f:if>
+    </label>
+    <input type="hidden" name="request#_{id}#parameter" value="{parameter.name}"/>
+    <textarea class="form-control" id="{id}" rows="3" name="request#_{id}#value" aria-describedby="{id}-help"
+              {f:if(condition: '{parameter.required}', then: 'required')}></textarea>
+    <f:if condition="{parameter.description}">
+        <div id="{id}-help" class="text-muted form-text">{parameter.description}</div>
+    </f:if>
+</div>

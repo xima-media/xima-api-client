@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2023-01-16T09:23:21Z">
+		<body>
+			<trans-unit id="plugin.title">
+				<source>Reusable Request</source>
+				<target>Reusable Request</target>
+			</trans-unit>
+			<trans-unit id="tx_ximaapiclient_request">
+				<source>Reusable request</source>
+				<target>Reusable Request</target>
+			</trans-unit>
+			<trans-unit id="tx_ximaapiclient_request.description">
+				<source>Select a suitable reusable request as data source for the to be rendered template. If no reusable request is available for selection, allow the selected template within the reusable request configuration in the API Client module.</source>
+				<target>Wählen Sie einen geeigneten Reusable Request als Datenquelle für das zu rendernde Template. Sollte kein Reusable Request zur Auswahl stehen, erlauben sie das gewählte Template innerhalb der Konfiguration der Reusable Requests im API Client Modul.</target>
+			</trans-unit>
+			<trans-unit id="tx_ximaapiclient_template">
+				<source>Registered template</source>
+				<target>Registrierte Templates</target>
+			</trans-unit>
+			<trans-unit id="tx_ximaapiclient_template.description">
+				<source>Select a fluid template for rendering the api data from the selected reusable request.</source>
+				<target>Wählen Sie ein Template für die Darstellung der API-Daten aus dem ausgewählten Reusable Request.</target>
+			</trans-unit>
+			<trans-unit id="tx_ximaapiclient_detail_pid">
+				<source>PageId for single item display</source>
+				<target>PageId für die Anzeige einzelner Datensätze</target>
+			</trans-unit>
+			<trans-unit id="tx_ximaapiclient_pagination">
+				<source>Pagination</source>
+				<target>Paginierung</target>
+			</trans-unit>
+			<trans-unit id="tx_ximaapiclient_pagination_page_parameter">
+				<source>Page parameter</source>
+				<target>Seitenparameter</target>
+			</trans-unit>
+			<trans-unit id="tx_ximaapiclient_pagination_page_parameter.description">
+				<source>Select the parameter handling the pagination in the API. Remember to also select it as an overridable parameter below.</source>
+				<target>Wählen Sie den Parameter aus, der die Paginierung in der API steuert. Denken Sie daran, ihn unten auch als überschreibbaren Parameter auszuwählen.</target>
+			</trans-unit>
+
+			<!-- Registered templates-->
+			<trans-unit id="tx_ximaapiclient_registeredtemplates.debug.label">
+				<source>Debug</source>
+				<target>Debug</target>
+			</trans-unit>
+			<trans-unit id="tx_ximaapiclient_registeredtemplates.debug.description">
+				<source>This is the debug template for providing a technical entry using the api client extension within the frontend.</source>
+				<target>Dies ist die Debug-Vorlage für die Bereitstellung eines technischen Eintrags unter Verwendung der "Api Client" Extension im Frontend.</target>
+			</trans-unit>
+
+			<!-- Backend module -->
+			<trans-unit id="tx_ximaapiclient_backendmodule.request.reusable_request">
+				<source>Reusable Request</source>
+				<target>Wiederverwendbarer Request</target>
+			</trans-unit>
+			<trans-unit id="tx_ximaapiclient_backendmodule.request.temporary_request">
+				<source>Temporary Request</source>
+				<target>Temporärer Request</target>
+			</trans-unit>
+
+			<!-- Parameter overrides -->
+			<trans-unit id="tx_ximaapiclient_parameter_overrides">
+				<source />
+				<target>Request-Parameter überschreiben</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ximaapiclient_parameter_overrides.description">
+				<source />
+				<target>Die Priorisierung der Überschreibbarkeiten ist (in absteigender Priorität): GET-Parameter, statischer Wert, Event-Listener von ModifyRequestFiltersEvent.</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ximaapiclient_parameter_overrides.parameter">
+				<source />
+				<target>Parameter</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ximaapiclient_parameter_overrides.allowGetOverride">
+				<source />
+				<target>Das Überschreiben durch GET-Parameter erlauben</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ximaapiclient_parameter_overrides.allowGetOverride.description">
+				<source />
+				<target>Es werden nur GET-Parameter mit dem Präfix "xac_" beachtet, z. B. wird xac_id=123 zu id=123.</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ximaapiclient_parameter_overrides.overrideByStaticValue">
+				<source />
+				<target>Durch statischen Wert überschreiben</target>
+			</trans-unit>
+
+			<trans-unit id="tx_ximaapiclient_parameter_overrides.staticOverrideValue">
+				<source />
+				<target>Statischer Wert</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

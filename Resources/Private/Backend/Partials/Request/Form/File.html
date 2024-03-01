@@ -1,0 +1,12 @@
+<div class="col-sm-6 mb-3 request-input-file">
+    <label for="{id}" class="form-label"><span class="font-monospace">{parameter.name}</span>
+        <f:if condition="{parameter.required}">
+            <code>*</code>
+        </f:if>
+    </label>
+    <em>ToDo</em>
+
+    <f:if condition="{parameter.description}">
+        <div id="{id}-help" class="text-muted form-text">{parameter.description}</div>
+    </f:if>
+</div>

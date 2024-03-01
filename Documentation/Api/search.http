@@ -1,0 +1,11 @@
+###
+# Request wineries
+#
+POST http://{{host}}/winzersuche?tx_ximaapiclient_reusablerequest%5Baction%5D=reusableRequestAjax&tx_ximaapiclient_reusablerequest%5Bcontroller%5D=Request&tx_ximaapiclient_reusablerequest%5BpaginationParameter%5D=page&tx_ximaapiclient_reusablerequest%5BreusableRequestUid%5D=12&tx_ximaapiclient_reusablerequest%5Bxac_page_p69%5D=1&type=1687939485&cHash=2f9800d204fa19ef7629c70b12e409f6
+Content-Type: applicationjson
+
+{
+  "overrideParameters": {
+    "contact.address[geolocationArea]": "54.1244237,11.6393979,50.9435436,13.9824547"
+  }
+}

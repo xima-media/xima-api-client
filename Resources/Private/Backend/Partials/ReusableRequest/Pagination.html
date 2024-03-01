@@ -1,0 +1,111 @@
+<html xmlns:be="http://typo3.org/ns/TYPO3/CMS/Backend/ViewHelpers"
+      xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<f:if condition="{paginator.numberOfPages} > 1">
+    <nav class="d-flex justify-content-center pagination__wrapper" aria-label="Page navigation example">
+        <ul class="pagination flex-wrap justify-content-center">
+            <f:if condition="{pagination.previousPageNumber} && {pagination.previousPageNumber} >= {pagination.firstPageNumber}">
+                <li class="page-item">
+                    <a class="page-link" href="{f:uri.action(action:actionName, arguments:{
+                                                filter: filter,
+                                                search: filter.search,
+                                                method: filter.method,
+                                                clientAlias: filter.clientAlias,
+                                                sortBy: filter.sortBy,
+                                                sortOrder: filter.sortOrder,
+                                                currentPage: pagination.previousPageNumber},
+                                                addQueryString:1)}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+            </f:if>
+            <f:for each="{pagination.allPageNumbers}" as="page" iteration="pageIterator">
+                <f:if condition="{page} == {paginator.currentPageNumber} && {pagination.lastPageNumber} > 1">
+                    <f:then>
+                        <li class="page-item active">
+                            <a class="page-link" href="{f:uri.action(action:actionName, arguments:{
+                                                filter: filter,
+                                                search: filter.search,
+                                                method: filter.method,
+                                                clientAlias: filter.clientAlias,
+                                                sortBy: filter.sortBy,
+                                                sortOrder: filter.sortOrder,
+                                                currentPage: page},
+                                                addQueryString:1)}">
+                                {page}
+                            </a>
+                        </li>
+                    </f:then>
+                    <f:else>
+                        <f:if condition="{pageIterator.cycle} < 10">
+                            <f:then>
+                                <li class="page-item">
+                                    <f:if condition="{pagination.lastPageNumber} > 1">
+                                        <f:then>
+                                            <a class="page-link" href="{f:uri.action(action:actionName, arguments:{
+                                                filter: filter,
+                                                search: filter.search,
+                                                method: filter.method,
+                                                clientAlias: filter.clientAlias,
+                                                sortBy: filter.sortBy,
+                                                sortOrder: filter.sortOrder,
+                                                currentPage: page},
+                                                addQueryString:1)}">
+                                                {page}
+                                            </a>
+                                        </f:then>
+                                    </f:if>
+                                </li>
+                            </f:then>
+                            <f:else>
+                                <li class="page-item d-none">
+                                    <f:if condition="{pagination.lastPageNumber} > 1">
+                                        <f:then>
+                                            <a class="page-link" href="{f:uri.action(action:actionName, arguments:{filter: filter,
+                                                search: filter.search,
+                                                method: filter.method,
+                                                clientAlias: filter.clientAlias,
+                                                sortBy: filter.sortBy,
+                                                sortOrder: filter.sortOrder,
+                                                currentPage: page},
+                                                addQueryString:1)}">
+                                                {page}
+                                            </a>
+                                        </f:then>
+                                    </f:if>
+                                </li>
+                            </f:else>
+                        </f:if>
+                    </f:else>
+                </f:if>
+            </f:for>
+            <f:if condition="{paginator.numberOfPages} > 10">
+                <li class="page-item">
+                    <f:if condition="{pagination.lastPageNumber} > 1">
+                        <f:then>
+                            <button class="page-link" id="showAllPaginatedItems">....</button>
+                        </f:then>
+                    </f:if>
+                </li>
+            </f:if>
+
+            <f:if condition="{pagination.nextPageNumber} && {pagination.nextPageNumber} <= {pagination.lastPageNumber}">
+                <li class="page-item">
+                    <a class="page-link" href="{f:uri.action(action:actionName, arguments:{
+                        filter: filter,
+                                                search: filter.search,
+                                                method: filter.method,
+                                                clientAlias: filter.clientAlias,
+                                                sortBy: filter.sortBy,
+                                                sortOrder: filter.sortOrder,
+                                                currentPage: pagination.nextPageNumber},
+                                                addQueryString:1)}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </f:if>
+        </ul>
+    </nav>
+</f:if>
+</html>

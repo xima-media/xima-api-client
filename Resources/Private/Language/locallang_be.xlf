@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+	<file source-language="en" datatype="plaintext" original="messages" date="2023-01-16T09:23:21Z">
+		<body>
+			<trans-unit id="plugin.title">
+				<source>Reusable Request</source>
+			</trans-unit>
+			<trans-unit id="tx_ximaapiclient_request">
+				<source>Reusable request</source>
+			</trans-unit>
+			<trans-unit id="tx_ximaapiclient_request.description">
+				<source>Select a suitable reusable request as data source for the to be rendered template. If no reusable request is available for selection, allow the selected template within the reusable request configuration in the API Client module.</source>
+			</trans-unit>
+			<trans-unit id="tx_ximaapiclient_template">
+				<source>Registered template</source>
+			</trans-unit>
+			<trans-unit id="tx_ximaapiclient_template.description">
+				<source>Select a fluid template for rendering the api data from the selected reusable request.</source>
+			</trans-unit>
+			<trans-unit id="tx_ximaapiclient_detail_pid">
+				<source>PageId for single item display</source>
+			</trans-unit>
+			<trans-unit id="tx_ximaapiclient_pagination">
+				<source>Pagination</source>
+			</trans-unit>
+			<trans-unit id="tx_ximaapiclient_pagination_page_parameter">
+				<source>Page parameter</source>
+			</trans-unit>
+			<trans-unit id="tx_ximaapiclient_pagination_page_parameter.description">
+				<source>Select the parameter handling the pagination in the API. Remember to also select it as an parameter override below.</source>
+			</trans-unit>
+
+			<!-- Registered templates-->
+			<trans-unit id="tx_ximaapiclient_registeredtemplates.debug.label">
+				<source>Debug</source>
+			</trans-unit>
+			<trans-unit id="tx_ximaapiclient_registeredtemplates.debug.description">
+				<source>This is the debug template for providing a technical entry using the api client extension within the frontend.</source>
+			</trans-unit>
+
+			<!-- Backend module -->
+			<trans-unit id="tx_ximaapiclient_backendmodule.request.reusable_request">
+				<source>Reusable Request</source>
+			</trans-unit>
+			<trans-unit id="tx_ximaapiclient_backendmodule.request.temporary_request">
+				<source>Temporary Request</source>
+			</trans-unit>
+
+			<!-- Parameter overrides -->
+			<trans-unit id="tx_ximaapiclient_parameter_overrides">
+				<source>Request parameter overrides</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ximaapiclient_parameter_overrides.description">
+				<source>The priority of overriding is (in descending priority): GET parameter, static value, event listener of ModifyRequestFiltersEvent.</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ximaapiclient_parameter_overrides.parameter">
+				<source>Parameter</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ximaapiclient_parameter_overrides.allowGetOverride">
+				<source>Allow overriding by GET parameters</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ximaapiclient_parameter_overrides.allowGetOverride.description">
+				<source>Only GET parameters with prefix "xac_" are applied, e.g. xac_id=123 translates to id=123.</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ximaapiclient_parameter_overrides.overrideByStaticValue">
+				<source>Override by static value</source>
+			</trans-unit>
+
+			<trans-unit id="tx_ximaapiclient_parameter_overrides.staticOverrideValue">
+				<source>Static override value</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

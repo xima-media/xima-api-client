@@ -1,0 +1,55 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+
+  Xima\XimaApiClient\:
+    resource: '../Classes/*'
+
+  cache.api_client_db_cache:
+    class: TYPO3\CMS\Core\Cache\Frontend\FrontendInterface
+    factory: [ '@TYPO3\CMS\Core\Cache\CacheManager', 'getCache' ]
+    arguments: [ 'api_client_db_cache' ]
+
+  Xima\XimaApiClient\ApiClient\ApiClient:
+    public: true
+
+  Xima\XimaApiClient\ApiClient\ApiSchema:
+    public: true
+
+  Xima\XimaApiClient\Command\ApiQueryCommand:
+    tags:
+      - name: console.command
+        command: 'api_client:query'
+        description: 'Query the apis for debugging purposes.'
+
+  Xima\XimaApiClient\Command\CacheFlushCommand:
+    tags:
+      - name: console.command
+        command: 'api_client:cache:flush'
+        description: 'Flush the api client''s various caches.'
+
+  Xima\XimaApiClient\Command\CacheWarmupCommand:
+    tags:
+      - name: console.command
+        command: 'api_client:cache:warmup'
+        description: 'Warmup the api client''s various caches.'
+
+  Xima\XimaApiClient\Domain\Repository\ReusableRequestRepository:
+    public: true
+
+  Xima\XimaApiClient\Helper\CacheHelper:
+    public: true
+    arguments:
+      $cache: '@cache.api_client_db_cache'
+
+  Xima\XimaApiClient\Helper\ItemsProcFunc:
+    public: true
+
+  Xima\XimaApiClient\EventListener\ModifyButtonBarEventListener:
+    tags:
+      - name: event.listener
+        identifier: 'xima-sitepackage/modify-button-bar'
+
+  Xima\XimaApiClient\Service\FilterService:
+    public: true

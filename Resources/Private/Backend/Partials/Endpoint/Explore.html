@@ -1,0 +1,59 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:core="http://typo3.org/ns/TYPO3/CMS/Core/ViewHelpers"
+    xmlns:be="http://typo3.org/ns/TYPO3/CMS/Backend/ViewHelpers"
+    data-namespace-typo3-fluid="true">
+
+<div class="endpoints">
+    <h1>Explore API</h1>
+
+    <div class="mb-3">
+        <p>The list of all registered endpoints.</p>
+    </div>
+
+    <div class="filter mb-4 d-flex align-items-center">
+        <div class="col-4">
+            <select class="form-select" id="api-client-config-selection">
+                <f:for each="{clientConfigs}" key="clientConfigKey" as="clientConfigEntry">
+                    <option value="{be:moduleLink(route:'web_api_client.Backend\Explore_explore', arguments:'{clientAlias: clientConfigKey}')}"
+                            {f:if(condition: '{clientConfigKey} == {clientAlias}', then: 'selected')}>{clientConfigKey} [{clientConfigEntry.host}]</option>
+                </f:for>
+            </select>
+        </div>
+        <div class="col-4 pe-0 ms-auto">
+            <div class="input-group" id="search">
+                <input type="text" class="search form-control"/>
+                <div class="input-group-append">
+                    <span class="input-group-text h-100">
+                        <span class="search-icon-search">
+                            <core:icon identifier="actions-search" size="small"/>
+                        </span>
+                        <span class="search-icon-close">
+                            <core:icon identifier="actions-close" size="small"/>
+                        </span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <f:for each="{schema.paths}" key="endpoint" as="endpointData" iteration="x">
+        <f:for each="{endpointData}" key="method" as="operationData" iteration="y">
+            <f:if condition="{operationData}">
+                <div class="request search-element mb-2 {f:if(condition: '{tag} != {operationData.tags.0}', then: 'mt-4')}"
+                     data-search-uid="{method}/{endpoint}"
+                     data-search-method="{method}"
+                     data-search-endpoint="{endpoint}"
+                     data-search-tag="{operationData.tags.0}">
+                    <f:variable name="uniqid">{method}-{x.index}-{y.index}</f:variable>
+                    <f:render partial="Endpoint/Endpoint"
+                              arguments="{title: endpoint, data: operationData, method: method, uniqid:uniqid, schemaLocation:schemaLocation, clientAlias:clientAlias}"/>
+                </div>
+                <f:variable name="tag" value="{operationData.tags.0}"/>
+            </f:if>
+        </f:for>
+    </f:for>
+</div>
+
+
+</html>

@@ -1,0 +1,98 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:core="http://typo3.org/ns/TYPO3/CMS/Core/ViewHelpers"
+    xmlns:ac="http://typo3.org/ns/Xima/XimaApiClient/ViewHelpers"
+    data-namespace-typo3-fluid="true">
+
+<article class="{class}">
+    <div class="card">
+        <div class="card-header p-0">
+            <h2 class="mb-0 d-flex align-items-center">
+                <a href="{f:if(condition: '{hideDetailLink}', then: '#{uniqid}', else: '{be:moduleLink(route:\'web_api_client.Backend\Request_editRequest\', arguments:\'{endpoint: title, method: method, clientAlias:clientAlias}\')}')}"
+                   class="path d-flex align-items-center py-2 px-2" {f:if(condition: '{hideDetailLink}', then:
+                'data-bs-toggle="collapse"')}>
+                <i class="method method-{method}"></i>
+                <span class="font-monospace">{ac:routeParameterFormatter(route: title)->f:format.raw()}</span>
+                </a>
+                <span class="badge rounded-pill bg-secondary ms-auto d-flex" style="color:#fff">{data.tags.0}</span>
+                <a href="#{uniqid}" class="px-2" data-bs-toggle="collapse">
+                    <core:icon identifier="actions-caret-down" size="small"/>
+                </a>
+                <f:if condition="!{hideDetailLink}">
+                    <a href="{be:moduleLink(route:'web_api_client.Backend\Request_editRequest', arguments:'{endpoint: title, method: method, clientAlias:clientAlias}')}"
+                       class="pe-2">
+                        <core:icon identifier="actions-caret-right" size="small"/>
+                    </a>
+                </f:if>
+            </h2>
+        </div>
+        <div id="{uniqid}" class="collapse">
+            <div class="card-body p-text">
+                <h2>{data.tags.0}</h2>
+                <h3>Summary</h3>
+                <p>
+                    <em>
+                        {data.summary}
+                    </em>
+                </p>
+                <ul>
+                    <f:for each="{data.produces}" as="produce">
+                        <li><code>{produce}</code></li>
+                    </f:for>
+                </ul>
+                <hr/>
+                <f:if condition="{data.parameters}">
+                    <h3>Parameter</h3>
+                    <table class="table table-striped table-hover">
+                        <thead>
+                        <tr>
+                            <th class="align-top">Name</th>
+                            <th class="align-top">Type</th>
+                            <th class="align-top">Description</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <f:for as="parameter" each="{data.parameters}">
+                            <tr>
+                                <td>
+                                    {parameter.name}
+                                    <f:if condition="{parameter.required}">
+                                        <code>*</code>
+                                    </f:if>
+                                    <small class="text-muted">({parameter.in})</small>
+                                </td>
+                                <td>
+                                    <code>{parameter.type}</code>
+                                </td>
+                                <td>
+                                    <em>{parameter.description}</em>
+                                    <f:if condition="{parameter.default}">
+                                        Default value: <code>{parameter.default}</code><br/>
+                                    </f:if>
+                                    <f:if condition="{parameter.enum}">
+                                        Available values:
+                                        <f:for as="e" each="{parameter.enum}">
+                                            <code>{e}</code>
+                                        </f:for>
+                                        <br/>
+                                    </f:if>
+
+                                </td>
+                            </tr>
+                        </f:for>
+                        </tbody>
+                    </table>
+                    <hr/>
+                </f:if>
+                <h3>Responses</h3>
+                <f:for as="response" key="responseCode" each="{data.responses.patternedFields}">
+                    <code>{responseCode}</code> {response.description}<br/>
+                    <f:if condition="{response.schema}">
+                        <f:debug inline="true" title="Response">{response.schema}</f:debug>
+                    </f:if>
+                </f:for>
+
+            </div>
+        </div>
+    </div>
+</article>

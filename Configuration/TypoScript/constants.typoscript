@@ -1,0 +1,29 @@
+module.tx_ximaapiclient {
+    view {
+        # cat=module.tx_ximaapiclient/file; type=string; label=Path to template root (BE)
+        templateRootPath =
+        # cat=module.tx_ximaapiclient/file; type=string; label=Path to template partials (BE)
+        partialRootPath =
+        # cat=module.tx_ximaapiclient/file; type=string; label=Path to template layouts (BE)
+        layoutRootPath =
+    }
+
+    persistence {
+    }
+}
+
+plugin.tx_ximaapiclient {
+    view {
+        # cat=plugin.tx_ximaapiclient/file; type=string; label=Path to template root
+        templateRootPath =
+        # cat=plugin.tx_ximaapiclient/file; type=string; label=Path to template partials
+        partialRootPath =
+        # cat=plugin.tx_ximaapiclient/file; type=string; label=Path to template layouts
+        layoutRootPath =
+    }
+
+    persistence {
+        # cat=plugin.tx_ximaapiclient//a; type=string; label=Default storage PID
+        storagePid =
+    }
+}

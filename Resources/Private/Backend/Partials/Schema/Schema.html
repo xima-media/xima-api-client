@@ -1,0 +1,25 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:core="http://typo3.org/ns/TYPO3/CMS/Core/ViewHelpers"
+    xmlns:be="http://typo3.org/ns/TYPO3/CMS/Backend/ViewHelpers"
+    data-namespace-typo3-fluid="true">
+
+<h1>API Specification</h1>
+<p>
+    Retrieve swagger schema from <code>{schemaLocation}</code>.
+</p>
+
+<div class="filter mb-4 d-flex align-items-center">
+    <div class="col-4">
+        <select class="form-select" id="api-client-config-selection">
+            <f:for each="{clientConfigs}" key="clientConfigKey" as="clientConfigEntry">
+                <option value="{be:moduleLink(route:'web_api_client.Backend\Explore_schema', arguments:'{clientAlias: clientConfigKey}')}"
+                        {f:if(condition: '{clientConfigKey} == {clientAlias}', then: 'selected')}>{clientConfigKey} [{clientConfigEntry.host}]</option>
+            </f:for>
+        </select>
+    </div>
+</div>
+
+<f:debug inline="true" title="Object" maxDepth="16">{schema}</f:debug>
+
+</html>

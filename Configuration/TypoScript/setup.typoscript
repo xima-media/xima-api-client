@@ -1,0 +1,71 @@
+
+# Module configuration
+module.tx_ximaapiclient {
+    view {
+        templateRootPaths.0 = EXT:xima_api_client/Resources/Private/Backend/Templates/
+        templateRootPaths.1 = {$module.tx_ximaapiclient.view.templateRootPath}
+        partialRootPaths.0 = EXT:xima_api_client/Resources/Private/Backend/Partials/
+        partialRootPaths.1 = {$module.tx_ximaapiclient.view.partialRootPath}
+        layoutRootPaths.0 = EXT:xima_api_client/Resources/Private/Backend/Layouts/
+        layoutRootPaths.1 = {$module.tx_ximaapiclient.view.layoutRootPath}
+    }
+    persistence {
+        storagePid = {$module.tx_ximaapiclient.persistence.storagePid}
+    }
+    settings {
+        persistence {
+        }
+    }
+}
+
+plugin.tx_ximaapiclient {
+    view {
+        templateRootPaths {
+            0 = EXT:xima_api_client/Resources/Private/Templates/
+            1 = {$plugin.tx_ximaapiclient.view.templateRootPath}
+        }
+        partialRootPaths {
+            0 = EXT:xima_api_client/Resources/Private/Partials/
+            1 = {$plugin.tx_ximaapiclient.view.partialRootPath}
+        }
+        layoutRootPaths {
+            0 = EXT:xima_api_client/Resources/Private/Layouts/
+            1 = {$plugin.tx_ximaapiclient.view.layoutRootPath}
+        }
+    }
+    persistence {
+        storagePid = {$plugin.tx_ximaapiclient.persistence.storagePid}
+    }
+    settings {
+        registeredRequestTemplates {
+            debug {
+                template = EXT:xima_api_client/Resources/Private/Templates/Debug.html
+                label = LLL:EXT:xima_api_client/Resources/Private/Language/locallang_be.xlf:tx_ximaapiclient_registeredtemplates.debug.label
+                description = LLL:EXT:xima_api_client/Resources/Private/Language/locallang_be.xlf:tx_ximaapiclient_registeredtemplates.debug.description
+                preview = EXT:xima_api_client/Resources/Public/Images/Preview/debug.png
+                addToAllRequests = true
+            }
+        }
+    }
+}
+
+tx_ximaapiclient_reusablerequest = PAGE
+tx_ximaapiclient_reusablerequest {
+    typeNum = 1687939485
+    10 = USER
+    10 {
+        userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+        extensionName = XimaApiClient
+        pluginName = ReusableRequest
+        vendorName = Xima
+        action = reusableRequestAjax
+    }
+    config {
+        disableAllHeaderCode = 1
+        additionalHeaders.10.header = Content-type:application/json
+        xhtml_cleaning = 0
+        debug = 0
+        no_cache = 1
+        admPanel = 0
+    }
+}

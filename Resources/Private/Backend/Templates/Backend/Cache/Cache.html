@@ -1,0 +1,78 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:core="http://typo3.org/ns/TYPO3/CMS/Core/ViewHelpers"
+    xmlns:be="http://typo3.org/ns/TYPO3/CMS/Backend/ViewHelpers"
+    data-namespace-typo3-fluid="true">
+
+<f:layout name="Default"/>
+
+<f:section name="Content">
+    <f:be.pageRenderer
+        includeJavaScriptModules="{0: '{f:uri.resource(path:\'JavaScript/dist/loader.js\', extensionName: \'XimaApiClient\')}'}"
+    />
+
+    <h1>Response cache</h1>
+
+    <div class="row">
+        <div class="col-6">
+            <h2>Flush & Warmup</h2>
+
+            <p class="mb-4">Select a client config. Afterwards you can warm up the cache for the corresponding requests or flush existing cached api responses (this also removes the cached schema).</p>
+
+            <f:form action="cache" style="gap:10px;">
+                <div class="row">
+                    <div class="col-4">
+                        <f:form.select property="clientAlias" name="clientAlias" class="form-select">
+                            <f:form.select.option value="">-</f:form.select.option>
+
+                            <f:for each="{clientConfigs}" key="clientConfigKey" as="clientConfigEntry">
+                                <f:form.select.option value="{clientConfigKey}" selected="{f:if(condition: '{clientConfigKey} == {clientAlias}', then: 'selected')}">
+                                    {clientConfigKey} [{clientConfigEntry.host}]
+                                </f:form.select.option>
+                            </f:for>
+                        </f:form.select>
+                    </div>
+
+                    <div class="col">
+                        <f:form.submit name="warmup" value="Warmup cache" class="btn btn-light"/>
+
+                        <f:form.submit name="flush" value="Flush cache" class="btn btn-danger"/>
+                    </div>
+                </div>
+            </f:form>
+        </div>
+
+        <div class="col-6">
+            <h2>Cache size</h2>
+
+            <p class="mb-4">The cache consists of the following tables whose current sizes are shown below.</p>
+
+            <div class="row">
+                <div class="col-1">
+                    <core:icon identifier="content-database" size="large" />
+                </div>
+
+                <div class="col">
+                    <table class="table table-striped">
+                        <thead>
+                            <th>Table</th>
+                            <th>Size</th>
+                            <th>Entries</th>
+                        </thead>
+                        <tbody>
+                        <f:for as="status" key="table" each="{cacheTableStatus}">
+                            <tr>
+                                <td>{table}</td>
+                                <td>{status.size}</td>
+                                <td>{status.rows}</td>
+                            </tr>
+                        </f:for>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</f:section>
+
+</html>

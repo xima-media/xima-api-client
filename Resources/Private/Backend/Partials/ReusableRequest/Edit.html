@@ -1,0 +1,107 @@
+<f:form action="editReusableRequest" id="reusableRequest">
+    <input type="hidden" name="request#endpoint" value="{endpoint}"/>
+    <input type="hidden" name="request#method" value="{method}"/>
+    <input type="hidden" name="request#clientAlias" value="{clientAlias}"/>
+    <input type="hidden" name="request#operationId" value="{routeData.operationId}"/>
+    <input type="hidden" name="request#tag" value="{routeData.tags.0}"/>
+    <input type="hidden" name="request#parameters"
+           value="{f:if(condition: '{reusableRequest}', then: '{reusableRequest.parameters -> f:format.json()}')}"/>
+    <input type="hidden" name="request#acceptHeader"
+           value="{f:if(condition: '{reusableRequest}', then: '{reusableRequest.acceptHeader}')}"/>
+    <div class="row mb-3">
+
+        <h3>
+            General configuration
+        </h3>
+        <div class="col-sm-2">
+            <label for="uid" class="form-label">UID</label>
+            <input type="text" class="form-control" id="uid" name="request#uid" aria-describedby="uidHelp"
+                   readonly required value="{f:if(condition: '{reusableRequest}', then: '{reusableRequest.uid}')}">
+            <div id="uidHelp" class="form-text">The <code>uid</code> will be automatically generated.
+            </div>
+        </div>
+        <div class="col-sm-10">
+            <label for="name" class="form-label">Name <code>*</code></label>
+            <input type="text" class="form-control" id="name" name="request#name" required aria-describedby="nameHelp"
+                   required value="{f:if(condition: '{reusableRequest}', then: '{reusableRequest.name}')}">
+            <div id="nameHelp" class="form-text">
+                Provide a clearly identifiable <code>name</code> for selecting the item within the frontend plugin.
+            </div>
+        </div>
+        <div class="col-sm-10 offset-sm-2">
+            <label for="description" class="form-label">Description</label>
+            <textarea class="form-control" id="description" name="request#description" aria-describedby="descriptionHelp">{f:if(condition: '{reusableRequest}', then: '{reusableRequest.description}')}</textarea>
+            <div id="descriptionHelp" class="form-text">
+                Additional description to describe the purpose of the request.
+            </div>
+        </div>
+        <div class="col-sm-2 mt-3">
+            <label for="clientAlias" class="form-label">Client Alias</label>
+            <input type="text" class="form-control" id="clientAlias" name="request#clientAlias" aria-describedby="clientAliasHelp"
+                   readonly required value="{clientAlias}">
+            <div id="clientAliasHelp" class="form-text">The <code>clientAlias</code> defines the api server.
+            </div>
+        </div>
+        <div class="col-sm-10 mt-3">
+            <label for="preparedEndpoint" class="form-label">Prepared endpoint url <code>*</code></label>
+            <input type="text" class="form-control preparedEndpoint font-monospace" id="preparedEndpoint"
+                   name="request#preparedEndpoint" aria-describedby="preparedEndpointHelp"
+                   readonly required
+                   value="{f:if(condition: '{reusableRequest}', then: '{reusableRequest.preparedEndpoint}')}">
+            <div id="preparedEndpointHelp" class="form-text">
+                The <code>url</code> will be generated when the <strong>Temporary Request</strong> was submitted.
+            </div>
+        </div>
+        <h3>
+            Additional configuration
+        </h3>
+        <div class="col-sm-12">
+            <div class="row">
+                <div class="col-sm-2">
+                    <label for="cacheLifetime" class="form-label">Cache lifetime</label>
+                    <input type="text" class="form-control" id="cacheLifetime" name="request#cacheLifetime" value="{reusableRequest.cacheLifetime}">
+                </div>
+                <div class="col-sm-2">
+                    <label for="cacheLifetimePeriod" class="form-label">Cache lifetime period</label>
+                    <select class="form-select" id="cacheLifetimePeriod" name="request#cacheLifetimePeriod">
+                        <option value="">-</option>
+                        <f:for each="{0:'seconds', 1:'minutes', 2:'hours', 3:'days', 4:'years'}" as="amount">
+                            <f:form.select.option value="{amount}" selected="{f:if(condition: '{reusableRequest.cacheLifetimePeriod} == {amount}', then: 'selected')}">{amount}</f:form.select.option>
+                        </f:for>
+                    </select>
+                </div>
+                <div class="col-sm-6 offset-sm-2">
+                    <label for="registeredTemplates" class="form-label">Allowed registered templates</label>
+                    <select class="form-select" id="registeredTemplates" name="request#registeredTemplates[]" multiple>
+                        <f:for each="{registeredTemplates}" as="registeredTemplate">
+                            <f:form.select.option value="{registeredTemplate.value}" selected="{f:if(condition: '{ac:inArray(needle: registeredTemplate.value, haystack: reusableRequest.registeredTemplates)}', then: 'selected')}"><f:translate key="{registeredTemplate.label}" default="{registeredTemplate.label}"/></f:form.select.option>
+                        </f:for>
+                    </select>
+                    <div id="registeredTemplatesHelp" class="form-text">
+                        Allow the templates for this specific request to use them together within the frontend plugin.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <button type="submit" class="btn btn-primary btn-lg">
+            <span class="value">
+                {f:if(condition: '{reusableRequest}', then: 'Update', else: 'Create')}
+            </span>
+            <span class="spinner hide"><core:icon identifier="spinner-circle-light" size="small"/></span>
+        </button>
+
+        <button class="btn btn-danger reusablerequest-delete btn-lg confirm" data-title="Delete reusable request"
+                data-content="Do you really want to delete the reusable request entry?" data-button-ok-text="Delete"
+                data-button-ok-class="btn-danger" data-button-close-text="Cancel" data-severity="2"
+                data-redirect="{be:moduleLink(route:'web_api_client.Backend\Request_listReusableRequest')}"
+                data-url="{be:moduleLink(route:'web_api_client.Backend\Request_deleteReusableRequest', arguments: '{uid: reusableRequest.uid}')}"
+                {f:if(condition:
+        '{reusableRequest}', then: '', else: 'disabled')}>
+        <span class="value">Delete</span>
+        <span class="spinner hide"><core:icon identifier="spinner-circle-light" size="small"/></span>
+        </button>
+    </div>
+</f:form>

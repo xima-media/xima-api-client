@@ -1,0 +1,18 @@
+<f:variable name="order" value="ASC" />
+<f:if condition="{filter.sortOrder} == 'ASC'">
+    <f:then>
+        <f:variable name="caret" value="up" />
+        <f:variable name="order" value="DESC" />
+    </f:then>
+    <f:else>
+        <f:variable name="caret" value="down" />
+        <f:variable name="order" value="ASC" />
+    </f:else>
+</f:if>
+
+<a href="{be:moduleLink(route:'web_api_client.Backend\Request_listReusableRequest', arguments:'{sortBy: identifier, sortOrder: order}')}">
+    {name}
+    <f:if condition="{filter.sortBy} == {identifier}">
+        <core:icon identifier="actions-caret-{caret}" size="small" />
+    </f:if>
+</a>

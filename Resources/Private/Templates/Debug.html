@@ -1,0 +1,60 @@
+<section style="font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace">
+    <h3>API Client - Reusable Request Plugin</h3>
+    <p>
+        This is the <em>debug</em> template for providing a technical entry using the api client extension within the frontend.
+    </p>
+    <p>
+        You can register your own template via typoscript, so you can select them in the "Reusable Request" frontend plugin:
+    </p>
+    <p>
+        <code>
+            plugin.tx_ximaapiclient.settings.registeredRequestTemplates.teaser {<br/>
+            &emsp;&emsp;label = LLL:EXT:your_extension/Resources/Private/Language/locallang_be.xlf:teaser.label<br/>
+            &emsp;&emsp;template = EXT:your_extension/Resources/Private/Templates/Teaser.html<br/>
+            &emsp;&emsp;description = LLL:EXT:your_extension/Resources/Private/Language/locallang_be.xlf:teaser.description<br/>
+            &emsp;&emsp;preview = EXT:your_extension/Resources/Public/Preview/Teaser.png<br/>
+            &emsp;&emsp;category = something<br/>
+            }
+        </code>
+    </p>
+    <p>
+        Don't forget to allow the template in a suitable reusable request configuration within the API Client backend module. If you want that this template is available for all reusable requests, you can add the following parameter to your typoscript template configuration:
+    </p>
+    <p>
+        <code>
+            plugin.tx_ximaapiclient.settings.registeredRequestTemplates.teaser {<br/>
+            &emsp;&emsp;...<br/>
+            &emsp;&emsp;addToAllRequests = true<br/>
+            }
+        </code>
+    </p>
+    <p>
+        You can also restrict the templates visible in your custom TCA field of type "registeredTemplate" by specifying a category in the typoscript of the template (see above). Then you can set your TCA config as follows:
+    </p>
+    <p>
+        <code>
+            // name of the field is mandatory because of ReusableRequestElement::render()!
+            'tx_ximaapiclient_template' => [
+                'exclude' => true,
+                'label' => 'LLL:EXT:' . ApiClientConfiguration::EXT_KEY . '/Resources/Private/Language/locallang_be.xlf:tx_ximaapiclient_template',
+                'description' => 'LLL:EXT:' . ApiClientConfiguration::EXT_KEY . '/Resources/Private/Language/locallang_be.xlf:tx_ximaapiclient_template.description',
+                'onChange' => 'reload',
+                'config' => [
+                    'type' => 'user',
+                    'renderType' => 'registeredTemplate',
+                    'categories' => [
+                        'header_slider' // the categories to display
+                    ]
+                ],
+            ],
+        </code>
+    </p>
+    <p>
+        The following variables are available for creating the template:<br/>
+    </p>
+    <ul>
+        <li>The <code>api_data</code> variable contains the raw response from the api.</li>
+        <li>The <code>api_meta</code> variable provides additional information, e.g. the request entity or the corresponding api schema. </li>
+    </ul>
+    <f:debug inline="true" maxDepth="16" title="Variables">{_all}</f:debug>
+</section>

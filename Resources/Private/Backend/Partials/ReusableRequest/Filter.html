@@ -1,0 +1,75 @@
+<f:form action="listReusableRequest"
+        object="{filter}"
+        objectName="filter"
+        class="filter "
+        style="gap:10px;"
+>
+    <div class="row row-cols-auto align-items-end g-3 mb-4">
+
+        <div class="col">
+            <f:comment>
+                <!--search-->
+            </f:comment>
+            <label class="form-label" for="filter-form-search">
+                Search
+            </label>
+            <f:form.textfield property="search"
+                              id="filter-form-search"
+                              type="search"
+                              placeholder="Search"
+                              class="form-control"
+            />
+        </div>
+
+        <div class="col">
+            <f:comment>
+                <!--method-->
+            </f:comment>
+            <label class="form-label" for="filter-form-method">
+                Method
+            </label>
+            <f:form.select property="method"
+                           id="filter-form-method"
+                           prependOptionLabel="All methods"
+                           prependOptionValue=""
+                           class="form-select"
+            >
+                <f:for as="option" each="{filterOptions.methods}">
+                    <f:form.select.option value="{option}">{option}</f:form.select.option>
+                </f:for>
+            </f:form.select>
+        </div>
+
+        <div class="col">
+            <f:comment>
+                <!--client alias-->
+            </f:comment>
+            <label class="form-label" for="filter-form-client-alias">
+                Client aliases
+            </label>
+            <f:form.select property="clientAlias"
+                           id="filter-form-client-alias"
+                           prependOptionLabel="All client aliases"
+                           prependOptionValue=""
+                           class="form-select"
+            >
+                <f:for as="option" each="{filterOptions.clientConfigs}">
+                    <f:form.select.option value="{option}">{option}</f:form.select.option>
+                </f:for>
+            </f:form.select>
+        </div>
+
+        <div class="col">
+            <f:form.submit
+                value="Filter"
+                class="btn btn-light"/>
+        </div>
+        <div class="col">
+            <a href="{be:moduleLink(route:'web_api_client.Backend\Request_listReusableRequest', arguments: {reset: true})}"
+               class="btn btn-link">
+                Reset
+            </a>
+        </div>
+
+    </div>
+</f:form>

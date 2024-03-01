@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2023-01-16T09:23:21Z">
+		<body>
+			<!-- Backend module -->
+			<trans-unit id="tx_ximaapiclient_backendmodule.request.reusable_request">
+				<source>Reusable Request</source>
+				<target>Wiederverwendbare Abfrage (Reusable Request)</target>
+			</trans-unit>
+			<trans-unit id="tx_ximaapiclient_backendmodule.request.reusable_request.description">
+				<source><![CDATA[Save the temporary query permanently as a reusable query to be able to use the API data as content for a registered template. Define a unique name and an optional description of the data so that the reusable query can be specifically assigned for the correct display form in the frontend.<br/>In the further configurations you will find the possibility to define the cache time, i.e. how often the data should be updated in order to increase the performance of the data output. In addition, it is necessary to make the assignment to the prepared registered template, which are capable of correctly displaying the data in the frontend. All mandatory fields are marked with an <code>*</code> and all automatically filled fields are greyed out.]]></source>
+				<target><![CDATA[Speichern Sie die <strong>temporäre Abfrage</strong> dauerhaft als wiederverwendbare Abfrage ab, um die API Daten als Inhalte für ein registriertes Template nutzen zu können. Definieren Sie einen eindeutigen Namen sowie eine optionale Beschreibung der Daten, damit die wiederverwendbare Abfrage konkret für die korrekte Darstellungsform im Frontend zugeordnet werden kann.<br/>In den weiteren Konfigurationen finden Sie die Möglichkeit, die Cachezeit zu definieren, also wie oft die Daten aktualisiert werden sollen, um die Performance der Datenausgabe zu steigern. Zudem ist es notwendig die Zuordnung zu den vorbereiteten registrierten Templates vorzunehmen, welche befähigt sind, die Daten im Frontend korrekt darzustellen.<br/>Alle Pflichtfelder sind mit einem <code>*</code> gekennzeichnet und alle automatisch befüllten Felder sind ausgegraut.]]></target>
+			</trans-unit>
+			<trans-unit id="tx_ximaapiclient_backendmodule.request.temporary_request">
+				<source>Temporary Request</source>
+				<target>Temporäre Abfrage</target>
+			</trans-unit>
+			<trans-unit id="tx_ximaapiclient_backendmodule.request.temporary_request.description">
+				<source><![CDATA[Here you have the option of trying out the API endpoint and sending temporary queries as a test. You can then view the response from the API in detail in the "Result" area. Use the parameters provided by the API as filters to refine or limit the result set. <br/>The API URL assembled with the filter values appears in the form of the reusable query as the "prepared endpoint URL" and is essential for saving the data source.<br/> All mandatory fields are marked with an <code>*</code>.]]></source>
+				<target><![CDATA[Hier haben Sie die Möglichkeit den API Endpunkt auszuprobieren und testweise temporäre Abfragen absenden. Die Antwort von der API können Sie sich dann ausführlich im Bereich "Ergebnis" anschauen. Nutzen Sie die von der API bereitgestellten Parameter als Filter, um die Ergebnismenge zu verfeinern bzw. einzuschränken. <br/> Die mit den Filterwerten zusammengebaute API URL erscheint im Formular der wiederverwendbaren Abfrage als "vorbereitete Endpunkt URL" und ist essentiell für das Speichern der Datenquelle.<br/>Alle Pflichtfelder sind mit einem <code>*</code> gekennzeichnet.]]></target>
+			</trans-unit>
+			<trans-unit id="tx_ximaapiclient_backendmodule.request.temporary_request.parameter">
+				<source>Parameter</source>
+				<target>Parameter</target>
+			</trans-unit>
+			<trans-unit id="tx_ximaapiclient_backendmodule.request.temporary_request.result">
+				<source>Result</source>
+				<target>Ergebnis</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

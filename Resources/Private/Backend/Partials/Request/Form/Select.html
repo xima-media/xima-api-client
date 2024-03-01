@@ -1,0 +1,20 @@
+<div class="col-sm-6 mb-3 request-input-select">
+    <label for="{id}" class="form-label"><span class="font-monospace">{parameter.name}</span>
+        <f:if condition="{parameter.required}">
+            <code>*</code>
+        </f:if>
+    </label>
+    <f:variable name="parameterName"><f:if condition="{parameter.enum}"><f:then>enum</f:then><f:else>schema.enum</f:else></f:if></f:variable>
+
+    <input type="hidden" name="request#_{id}#parameter" value="{parameter.name}"/>
+    <select id="{id}" class="form-select" name="request#_{id}#value" aria-describedby="{id}-help">
+        <f:if condition="!{parameter.required}"><option></option></f:if>
+        <f:for as="select" each="{parameter.{parameterName}}">
+            <option {f:if(condition:
+            '{value -> f:spaceless()} == {select}', then: 'selected')}>{select}</option>
+        </f:for>
+    </select>
+    <f:if condition="{parameter.description}">
+        <div id="{id}-help" class="text-muted form-text">{parameter.description}</div>
+    </f:if>
+</div>

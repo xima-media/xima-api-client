@@ -1,0 +1,15 @@
+<div class="col-sm-6 mb-3 request-input-integer">
+    <label for="{id}" class="form-label"><span class="font-monospace">{parameter.name}</span>
+        <f:if condition="{parameter.required}">
+            <code>*</code>
+        </f:if>
+    </label>
+    <input type="hidden" name="request#_{id}#parameter" value="{parameter.name}"/>
+    <input type="number" class="form-control" id="{id}" aria-describedby="{id}-help" value="{value -> f:spaceless()}"
+           name="request#_{id}#value"
+           {f:if(condition: '{parameter.required}', then: 'required')}
+    >
+    <f:if condition="{parameter.description}">
+        <div id="{id}-help" class="text-muted form-text">{parameter.description}</div>
+    </f:if>
+</div>

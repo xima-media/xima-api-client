@@ -1,0 +1,5 @@
+#
+# Extension Configuration template
+#
+# cat=Debugging; type=boolean; label=Debug mode: If set, a more verbose logging is done (might affect the performance; hence deactivate in production)
+debugMode =

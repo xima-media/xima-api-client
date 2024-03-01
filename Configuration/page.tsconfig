@@ -1,0 +1,16 @@
+mod.wizards.newContentElement.wizardItems {
+    plugins {
+        elements {
+            ximaapiclient_reusablerequest {
+                iconIdentifier = plugin-api-client
+                title = Reusable Request
+                description = Combines data from the api client with prepared templates.
+                tt_content_defValues {
+                    CType = list
+                    list_type = ximaapiclient_reusablerequest
+                }
+            }
+        }
+        show := addToList(ximaapiclient_reusablerequest)
+    }
+}

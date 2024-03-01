@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+	<file source-language="en" datatype="plaintext" original="messages" date="2023-01-16T09:23:21Z">
+		<body>
+			<!-- Backend module -->
+			<trans-unit id="tx_ximaapiclient_backendmodule.request.reusable_request">
+				<source>Reusable Request</source>
+			</trans-unit>
+			<trans-unit id="tx_ximaapiclient_backendmodule.request.temporary_request">
+				<source>Temporary Request</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

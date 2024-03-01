@@ -1,0 +1,79 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:core="http://typo3.org/ns/TYPO3/CMS/Core/ViewHelpers"
+    xmlns:be="http://typo3.org/ns/TYPO3/CMS/Backend/ViewHelpers"
+    data-namespace-typo3-fluid="true">
+
+<tr class="search-element"
+    data-search-uid="{request.method}/{request.endpoint}"
+    data-search-method="{request.method}"
+    data-search-endpoint="{request.endpoint}"
+    data-search-tag="{request.tag}"
+    data-search-name="{request.name}"
+>
+    <td class="text-muted" style="font-size: .75rem">
+        {request.uid}
+    </td>
+    <td>
+        <a href="{be:moduleLink(route:'web_api_client.Backend\Request_editRequest', arguments:'{request: request.uid}')}">{request.name}</a>
+    </td>
+    <td>
+        <small class="text-muted">{request.description}</small>
+    </td>
+    <td>
+        <i class="method method-{request.method} method-small"></i>
+    </td>
+    <td>
+        <span class="badge bg-secondary text-white">{request.clientAlias}</span>
+    </td>
+    <td style="max-width: 300px; overflow-x: hidden;">
+        <code>{request.preparedEndpoint}</code>
+    </td>
+    <td>
+        <span class="badge rounded-pill bg-secondary ms-auto" style="color:#fff">{request.tag}</span>
+    </td>
+    <td class="cache">
+        <f:if condition="{request.cacheLifetime} > 0 && {request.cacheLifetimePeriod} != ''">
+            <f:then>
+                <span class="badge rounded-pill{f:if(condition: '{request.currentCacheState.cached}', then: ' bg-success', else: ' bg-danger')}" style="color:#fff"
+                      title="{f:if(condition: '{request.currentCacheState.cached}', then: 'expiration: {request.currentCacheState.expires -> f:format.date(format: \'d.m.Y H:i\')}', else: 'not cached')}">
+                    {request.cacheLifetime} {request.cacheLifetimePeriod}
+                </span>
+            </f:then>
+            <f:else>
+                -
+            </f:else>
+        </f:if>
+    </td>
+    <td class="col-control">
+        <div class="btn-group" role="group">
+            <a class="btn btn-default"
+               href="{be:moduleLink(route:'web_api_client.Backend\Request_editRequest', arguments:'{request: request.uid}')}">
+                <core:icon identifier="actions-open" size="small"/>
+            </a>
+
+            <button class="btn btn-default flush-cache{f:if(condition: '!{request.currentCacheState.cached}', then: ' disabled')}"
+                    data-url="{be:moduleLink(route:'web_api_client.Backend\Request_flushReusableRequestCache', arguments: '{uid: request.uid}')}"
+                    href="#" title="Flush cache">
+                <core:icon identifier="apps-toolbar-menu-cache" size="small" />
+            </button>
+
+            <button class="btn btn-default warmup-cache"
+                    data-url="{be:moduleLink(route:'web_api_client.Backend\Request_warmupReusableRequestCache', arguments: '{uid: request.uid}')}"
+                    href="#" title="Warmup cache">
+                <core:icon identifier="actions-refresh" size="small" />
+            </button>
+
+            <button type="submit" class="btn btn-danger delete confirm" data-title="Delete"
+                    data-content="Do you really want to delete the reusable request entry?" data-button-ok-text="Delete"
+                    data-button-ok-class="btn-danger" data-button-close-text="Cancel" data-severity="-2"
+                    data-redirect="{be:moduleLink(route:'web_api_client.Backend\Request_listReusableRequest')}"
+                    data-url="{be:moduleLink(route:'web_api_client.Backend\Request_deleteReusableRequest', arguments: '{uid: request.uid}')}">
+                <core:icon identifier="actions-delete" size="small"/>
+            </button>
+        </div>
+    </td>
+</tr>
+
+
+</html>

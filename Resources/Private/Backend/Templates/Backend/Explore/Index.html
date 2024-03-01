@@ -1,0 +1,87 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:core="http://typo3.org/ns/TYPO3/CMS/Core/ViewHelpers"
+    xmlns:be="http://typo3.org/ns/TYPO3/CMS/Backend/ViewHelpers"
+    data-namespace-typo3-fluid="true">
+
+<f:layout name="Default"/>
+
+<f:section name="Content">
+    <f:be.pageRenderer
+        includeJavaScriptModules="{0: '{f:uri.resource(path:\'JavaScript/dist/loader.js\', extensionName: \'XimaApiClient\')}'}"
+    />
+
+    <h1>API Client</h1>
+    <div class="card-container">
+        <div class="card card-size-fixed-small">
+            <div class="card-header bg-white">
+                <div class="card-icon">
+                    <core:icon identifier="install-manage-features" size="large" />
+                </div>
+                <div class="card-header-body">
+                    <h1 class="card-title">Explore API</h1>
+                    <span class="card-subtitle">Exploration</span>
+                </div>
+            </div>
+            <div class="card-body">
+                <p class="card-text">List the API endpoints of all registered API client configs and try out requests with parameters</p>
+            </div>
+            <div class="card-footer">
+                <a class="btn btn-primary" href="{be:moduleLink(route:'web_api_client.Backend\Explore_explore')}">Endpoints</a>
+            </div>
+        </div>
+        <div class="card card-size-fixed-small">
+            <div class="card-header bg-white">
+                <div class="card-icon">
+                    <core:icon identifier="install-documentation" size="large" />
+                </div>
+                <div class="card-header-body">
+                    <h1 class="card-title">API Specification</h1>
+                    <span class="card-subtitle">Documentation</span>
+                </div>
+            </div>
+            <div class="card-body">
+                <p class="card-text">Display the API schema specification</p>
+            </div>
+            <div class="card-footer">
+                <a class="btn btn-default" href="{be:moduleLink(route:'web_api_client.Backend\Explore_schema')}">Schema</a>
+            </div>
+        </div>
+        <div class="card card-size-fixed-small">
+            <div class="card-header bg-white">
+                <div class="card-icon">
+                    <core:icon identifier="install-update" size="large" />
+                </div>
+                <div class="card-header-body">
+                    <h1 class="card-title">Reusable Requests</h1>
+                    <span class="card-subtitle">Configuration</span>
+                </div>
+            </div>
+            <div class="card-body">
+                <p class="card-text">List all reusable requests and edit the configuration</p>
+            </div>
+            <div class="card-footer">
+                <a class="btn btn-default" href="{be:moduleLink(route:'web_api_client.Backend\Request_listReusableRequest')}">Requests</a>
+            </div>
+        </div>
+        <div class="card card-size-fixed-small">
+            <div class="card-header bg-white">
+                <div class="card-icon">
+                    <core:icon identifier="install-clear-cache" size="large" />
+                </div>
+                <div class="card-header-body">
+                    <h1 class="card-title">Response cache</h1>
+                    <span class="card-subtitle">Maintenance</span>
+                </div>
+            </div>
+            <div class="card-body">
+                <p class="card-text">Flush and warmup the cached responses of reusable requests</p>
+            </div>
+            <div class="card-footer">
+                <a class="btn btn-default" href="{be:moduleLink(route:'web_api_client.Backend\Cache_cache')}">Response Cache</a>
+            </div>
+        </div>
+    </div>
+</f:section>
+
+</html>

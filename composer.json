@@ -1,0 +1,29 @@
+{
+    "name": "xima/xima-api-client",
+    "type": "typo3-cms-extension",
+    "description": "This extension provides a client for swagger-based APIs in context of the TYPO3 CMS installation.",
+    "homepage": "https://www.deutscheweine.de",
+    "license": [
+        "GPL-2.0-or-later"
+    ],
+    "keywords": [
+        "TYPO3 CMS"
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "^7.5",
+        "psr/log": "^3.0",
+        "symfony/console": "^6.2",
+        "psr/event-dispatcher": "^1.0",
+        "typo3/cms-core": "^12.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Xima\\XimaApiClient\\": "Classes/"
+        }
+    },
+    "extra": {
+        "typo3/cms": {
+            "extension-key": "xima_api_client"
+        }
+    }
+}

@@ -1,0 +1,70 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:core="http://typo3.org/ns/TYPO3/CMS/Core/ViewHelpers"
+    xmlns:be="http://typo3.org/ns/TYPO3/CMS/Backend/ViewHelpers"
+    data-namespace-typo3-fluid="true">
+
+<f:layout name="Default"/>
+
+<f:section name="Content">
+    <f:be.pageRenderer
+        includeJavaScriptModules="{0: '{f:uri.resource(path:\'JavaScript/dist/request.js\', extensionName: \'XimaApiClient\')}', 1: '{f:uri.resource(path:\'JavaScript/dist/loader.js\', extensionName: \'XimaApiClient\')}', 2: '{f:uri.resource(path:\'JavaScript/dist/confirm.js\', extensionName: \'XimaApiClient\')}'}"
+    />
+
+    <h1>Request</h1>
+
+    <div class="d-flex">
+        <div style="flex: 1; padding-right: 24px;">
+            <f:render partial="Endpoint/Endpoint"
+                      arguments="{title: endpoint, data: routeData, method: method, uniqid:'default', schemaLocation:schemaLocation, hideDetailLink:1}"/>
+
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex">
+                        <div class="mb-4 me-4">
+                            <h2>
+                                <f:translate key="tx_ximaapiclient_backendmodule.request.temporary_request" extensionName="XimaApiClient"/>
+                            </h2>
+                            <small>
+                                <f:format.raw><f:translate key="tx_ximaapiclient_backendmodule.request.temporary_request.description" extensionName="XimaApiClient"/></f:format.raw>
+                            </small>
+                        </div>
+                        <div>
+                            <core:icon identifier="install-manage-features" size="large" />
+                        </div>
+                    </div>
+                    <hr/>
+                    <div class="d-flex mb-2 pt-3 request-form-header">
+                        <i class="method method-{method}"></i>
+                        <input class="preparedEndpoint form-control" type="input" value="{endpoint}" readonly>
+                    </div>
+
+                    <f:render partial="Request/RequestBuilder" arguments="{_all}"/>
+                </div>
+            </div>
+        </div>
+        <div style="flex: 1; padding-left: 24px;">
+            <div id="response" class="card">
+                <div class="card-body">
+                    <div class="d-flex">
+                        <div class="mb-4 me-4">
+                            <h2>
+                                <f:translate key="tx_ximaapiclient_backendmodule.request.reusable_request" extensionName="XimaApiClient"/>
+                            </h2>
+                            <small>
+                                <f:format.raw><f:translate key="tx_ximaapiclient_backendmodule.request.reusable_request.description" extensionName="XimaApiClient"/></f:format.raw>
+                            </small>
+                        </div>
+                        <div>
+                            <core:icon identifier="install-manage-settings" size="large" />
+                        </div>
+                    </div>
+                    <hr/>
+                    <f:render partial="ReusableRequest/Edit" arguments="{_all}"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</f:section>
+
+</html>
